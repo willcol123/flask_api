@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+ <title>
+ Resultado Simulação
+ </title>
+ <link rel="stylesheet" href="index.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+ </head>
+ <body>
+ <header>
+ <h1>
+ Adsorção do CO<sub>2</sub> (mmol/g)
+ </h1>
+ </header>
+<input type="hidden"  id="varr1" value="{{ var1 }}">
+<input type="hidden"  id="varr2" value="{{ var2 }}">
+
+ <canvas id="plots" style="width:100%;max-width:700px"></canvas>
+
+
+<script>
+
+
+// Get the HTML canvas by its id 
+plots = document.getElementById("plots");
+
+// Create an instance of Chart object:
+new Chart(plots, {
+ type: 'line', //Declare the chart type 
+ data: {
+ labels: JSON.parse({{ var1 | tojson }}), //X-axis data 
+ datasets: [{
+ label:'Adsorção prevista',
+ data: JSON.parse({{ var2 | tojson }}), //Y-axis data 
+ backgroundColor: '#5e440f',
+ borderColor: 'black',
+ fill: false, //Fills the curve under the line with the babckground color. It's true by default 
+ }]
+ },
+});
+
+</script>
+</body>
+</htm/>
