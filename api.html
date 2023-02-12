@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title> Insira os Parâmetros de Previsão da Adsorção de CO<sub>2</sub> </title>
+
+  </head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('index')}}">API Flask</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+<form method="post">
+    <div class="form-group">
+        <label for="title">Temperatura (K)</label>
+        <input type="number" name="temperatura" min="297" max="346"
+               placeholder="Post title" class="form-control"
+               value="{{ request.form['temperatura'] }}"></input>
+    </div>
+
+    <div class="form-group">
+        <label for="content">Área Superficial (m²)</label>
+        <input type="number" name="area" min="800" max="3000"
+               placeholder="Post title" class="form-control"
+               value="{{ request.form['area'] }}"></input>
+    </div>
+        <div class="form-group">
+        <label for="content">Volume de Poro (m³/g)</label>
+        <input type="number" name="volume" step=".01" min="0.1" max="0.8"
+               placeholder="Post title" class="form-control"
+               value="{{ request.form['volume'] }}"></input>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
+<canvas id="grafico"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+<script> 
+	var ctx = document.getElementsByClassName("grafico");
+	var chartgraph = new Chart(ctx,{
+		type:'line',
+		data:{
+			labels:["Jan", "Fev"],
+			datasets:[{data:[1,2]}]
+
+		}
+			});
+</script>
+
+
+</body>
+</html>
